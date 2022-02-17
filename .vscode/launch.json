@@ -1,4 +1,5 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
             "name": "Docker .NET Core Launch",
@@ -6,7 +7,7 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "netCore": {
-                "appProject": "${workspaceFolder}/devantler-cms.csproj"
+                "appProject": "${workspaceFolder}/devantler-cms/devantler-cms.csproj"
             }
         }
     ]

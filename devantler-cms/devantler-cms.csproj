@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>devantler_cms</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Piranha" Version="10.0.2" />
+    <PackageReference Include="Piranha.AspNetCore" Version="10.0.2" />
+    <PackageReference Include="Piranha.AspNetCore.Identity.SQLServer" Version="10.0.2" />
+    <PackageReference Include="Piranha.AttributeBuilder" Version="10.0.2" />
+    <PackageReference Include="Piranha.Data.EF.SQLServer" Version="10.0.2" />
+    <PackageReference Include="Piranha.ImageSharp" Version="10.0.2" />
+    <PackageReference Include="Piranha.Local.FileStorage" Version="10.0.2" />
+    <PackageReference Include="Piranha.Manager" Version="10.0.2" />
+    <PackageReference Include="Piranha.Manager.LocalAuth" Version="10.0.2" />
+    <PackageReference Include="Piranha.Manager.TinyMCE" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>
