@@ -9,7 +9,7 @@ ENV ASPNETCORE_URLS=http://+:5000
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0-focal AS build
 WORKDIR /src
 COPY ["devantler-cms/devantler-cms.csproj", "devantler-cms/"]
 RUN dotnet restore "devantler-cms/devantler-cms.csproj"
