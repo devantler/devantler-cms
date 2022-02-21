@@ -1,15 +1,12 @@
-version: '3.9'
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
 
 services:
-  devantler-cms:
-    image: devantler-cms
+  devantlercms:
+    image: devantlercms
     build:
       context: .
       dockerfile: devantler-cms/Dockerfile
     ports:
       - 5000:5000
-  piranha-db:
-    image: mcr.microsoft.com/azure-sql-edge:1.0.5
-    environment:
-        MSSQL_SA_PASSWORD: Your_password1234
-        ACCEPT_EULA: 1

@@ -2,64 +2,40 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "docker-build",
-            "label": "docker-build: debug",
-            "dependsOn": [
-                "build"
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/devantler-cms/devantler-cms.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
-            "dockerBuild": {
-                "tag": "devantler-cms:dev",
-                "target": "base",
-                "dockerfile": "${workspaceFolder}/devantler-cms/Dockerfile",
-                "context": "${workspaceFolder}",
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/devantler-cms/devantler-cms.csproj"
-            }
+            "problemMatcher": "$msCompile"
         },
         {
-            "type": "docker-build",
-            "label": "docker-build: release",
-            "dependsOn": [
-                "build"
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/devantler-cms/devantler-cms.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
-            "dockerBuild": {
-                "tag": "devantler-cms:latest",
-                "dockerfile": "${workspaceFolder}/devantler-cms/Dockerfile",
-                "context": "${workspaceFolder}",
-                "pull": true
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/devantler-cms/devantler-cms.csproj"
-            }
+            "problemMatcher": "$msCompile"
         },
         {
-            "type": "docker-run",
-            "label": "docker-run: debug",
-            "dependsOn": [
-                "docker-build: debug"
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/devantler-cms/devantler-cms.csproj"
             ],
-            "dockerRun": {
-                "image": "devantler-cms:dev"
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/devantler-cms/devantler-cms.csproj",
-                "enableDebugging": true
-            }
-        },
-        {
-            "type": "docker-run",
-            "label": "docker-run: release",
-            "dependsOn": [
-                "docker-build: release"
-            ],
-            "dockerRun": {
-                "image": "devantler-cms:latest"
-            },
-            "netCore": {
-                "appProject": "${workspaceFolder}/devantler-cms/devantler-cms.csproj"
-            }
+            "problemMatcher": "$msCompile"
         }
     ]
 }
