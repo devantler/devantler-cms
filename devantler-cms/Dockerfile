@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base 
 WORKDIR /app
 EXPOSE 5000
 
@@ -11,9 +11,10 @@ USER appuser
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
-COPY ["devantler-cms.csproj", ""]
-RUN dotnet restore "devantler-cms.csproj"
+COPY ["devantler-cms/devantler-cms.csproj", "devantler-cms/"]
+RUN dotnet restore "devantler-cms/devantler-cms.csproj"
 COPY . .
+WORKDIR "/src/devantler-cms"
 RUN dotnet build "devantler-cms.csproj" -c Release -o /app/build
 
 FROM build AS publish

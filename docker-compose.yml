@@ -1,10 +1,12 @@
-version: '3.9'
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
 
 services:
   devantlercms:
     image: devantlercms
     build:
-      context: devantler-cms/
+      context: .
       dockerfile: devantler-cms/Dockerfile
     ports:
       - 5000:5000

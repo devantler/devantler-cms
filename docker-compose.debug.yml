@@ -6,7 +6,7 @@ services:
   devantlercms:
     image: devantlercms
     build:
-      context: devantler-cms/
+      context: .
       dockerfile: devantler-cms/Dockerfile
     ports:
       - 5000:5000

@@ -62,6 +62,7 @@
             ],
             "dockerBuild": {
                 "tag": "devantlercms:latest",
+                "target": "base",
                 "dockerfile": "${workspaceFolder}/devantler-cms/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true

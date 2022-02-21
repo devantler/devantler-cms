@@ -22,7 +22,7 @@ public static class PiranhaSetup
             options.UseTinyMCE();
             options.UseMemoryCache();
 
-            var connectionString = config.GetConnectionString("piranha_db");
+            var connectionString = config.GetConnectionString("Database");
             switch (environment.EnvironmentName)
             {
                 case "Development":
