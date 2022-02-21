@@ -17,7 +17,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSassCompiler();
+#if DEBUG
+        if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "false")
+        {
+            services.AddSassCompiler();
+        }
+#endif
         services.AddPiranhaSimplified(_config, _environment);
     }
 
