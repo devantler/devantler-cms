@@ -1,17 +1,16 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Piranha;
+using Piranha.AspNetCore.Identity.SQLite;
 using Piranha.AspNetCore.Identity.SQLServer;
 using Piranha.AttributeBuilder;
+using Piranha.Data.EF.SQLite;
 using Piranha.Data.EF.SQLServer;
 using Piranha.Manager.Editor;
 
 namespace devantler_cms.Setup;
 public static class PiranhaSetup
 {
-    public static void SetupPiranha(this IServiceCollection services, IConfiguration config)
+    public static void AddPiranhaSimplified(this IServiceCollection services, IConfiguration config, IWebHostEnvironment environment)
     {
         services.AddPiranha(options =>
         {
@@ -24,29 +23,22 @@ public static class PiranhaSetup
             options.UseMemoryCache();
 
             var connectionString = config.GetConnectionString("piranha_db");
-            options.UseEF<SQLServerDb>(db => db.UseSqlServer(connectionString));
-            options.UseIdentityWithSeed<IdentitySQLServerDb>(db => db.UseSqlServer(connectionString));
-
-            /**
-             * Here you can configure the different permissions
-             * that you want to use for securing content in the
-             * application.
-            options.UseSecurity(o =>
+            switch (environment.EnvironmentName)
             {
-                o.UsePermission("WebUser", "Web User");
-            });
-             */
-
-            /**
-             * Here you can specify the login url for the front end
-             * application. This does not affect the login url of
-             * the manager interface.
-            options.LoginUrl = "login";
-             */
+                case "Development":
+                    options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
+                    options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
+                    break;
+                case "Staging":
+                case "Production":
+                    options.UseEF<SQLServerDb>(db => db.UseSqlServer(connectionString));
+                    options.UseIdentityWithSeed<IdentitySQLServerDb>(db => db.UseSqlServer(connectionString));
+                    break;
+            }
         });
     }
 
-    internal static void SetupPiranhaMiddleware(this IApplicationBuilder app)
+    internal static void UsePiranhaSimplified(this IApplicationBuilder app)
     {
         app.UsePiranha(options =>
         {
@@ -61,7 +53,7 @@ public static class PiranhaSetup
         EditorConfig.FromFile("editorconfig.json");
     }
 
-    public static void SetupPiranhaApi(IApi api)
+    public static void Init(IApi api)
     {
         App.Init(api);
 
