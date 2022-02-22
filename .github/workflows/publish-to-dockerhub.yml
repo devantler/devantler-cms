@@ -27,7 +27,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: devantler-cms
           file: devantler-cms/Dockerfile
           platforms: linux/arm64
           push: true
