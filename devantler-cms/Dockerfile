@@ -23,4 +23,5 @@ RUN dotnet publish "devantler-cms.csproj" -c Release -o /app/publish /p:UseAppHo
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN mkdir -p /wwwroot/uploads
 ENTRYPOINT ["dotnet", "devantler-cms.dll"]
