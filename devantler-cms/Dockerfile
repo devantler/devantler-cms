@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base 
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.2 AS base 
 EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:5000
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0.2 AS build
 WORKDIR /src
 COPY *.csproj ./
 RUN dotnet restore
