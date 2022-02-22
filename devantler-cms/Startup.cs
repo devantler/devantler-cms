@@ -27,9 +27,10 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
-        app.UseWebOptimizer();
         PiranhaSetup.Init(api);
         PiranhaSetup.ConfigureTinyMCE();
         app.UsePiranhaSimplified();
+        app.UseWebOptimizer();
+        app.UseStaticFiles();
     }
 }
