@@ -1,4 +1,3 @@
-using AspNetCore.SassCompiler;
 using devantler_cms.Setup;
 using Piranha;
 
@@ -17,12 +16,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-#if DEBUG
-        if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "false")
-        {
-            services.AddSassCompiler();
-        }
-#endif
+        services.AddWebOptimizer(pipeline =>
+            pipeline.AddScssBundle("/css/style.css", "scss/style.scss"));
         services.AddPiranhaSimplified(_config, _environment);
     }
 
@@ -32,7 +27,7 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
-
+        app.UseWebOptimizer();
         PiranhaSetup.Init(api);
         PiranhaSetup.ConfigureTinyMCE();
         app.UsePiranhaSimplified();

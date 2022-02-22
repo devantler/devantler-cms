@@ -30,6 +30,5 @@ jobs:
           context: devantler-cms
           file: devantler-cms/Dockerfile
           platforms: linux/arm64
-          target: base
           push: true
           tags: devantler/devantler-cms:${{ github.event.release.tag_name }}
