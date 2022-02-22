@@ -16,8 +16,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddWebOptimizer(pipeline =>
-            pipeline.AddScssBundle("/css/style.css", "scss/style.scss"));
+        var isProduction = _environment.IsProduction();
+        services.AddWebOptimizer(
+            _environment,
+            new CssBundlingSettings { Minify = isProduction },
+            new CodeBundlingSettings { Minify = isProduction },
+            pipeline => pipeline.AddScssBundle("/css/style.css", "scss/style.scss"));
         services.AddPiranhaSimplified(_config, _environment);
     }
 
