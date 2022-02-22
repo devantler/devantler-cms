@@ -31,6 +31,5 @@ public class Startup
         PiranhaSetup.ConfigureTinyMCE();
         app.UsePiranhaSimplified();
         app.UseWebOptimizer();
-        app.UseStaticFiles();
     }
 }
