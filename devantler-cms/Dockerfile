@@ -11,4 +11,4 @@ WORKDIR /app/wwwroot/uploads
 WORKDIR /app
 COPY --from=build /app .
 ENV DOTNET_EnableDiagnostics=0
-ENTRYPOINT ["dotnet", "devantler-cms.dll"]
+ENTRYPOINT exec dotnet devantler-cms.dll
