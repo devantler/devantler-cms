@@ -9,6 +9,6 @@ RUN dotnet publish -c Release -o /app --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app/wwwroot/uploads
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://+:5000
 COPY --from=build /app .
-ENV DOTNET_EnableDiagnostics=0
-ENTRYPOINT exec dotnet devantler-cms.dll
+ENTRYPOINT ["dotnet", "devantler-cms.dll"]
