@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "devantler_cms": {
+    "devantler.cms": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

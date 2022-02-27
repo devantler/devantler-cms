@@ -1,12 +1,11 @@
-using devantler_cms.Extensions;
+using devantler.cms.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-var environment = builder.Environment;
-builder.Services.AddWebOptimizerSimplified(environment);
-builder.Services.AddPiranhaSimplified(builder.Configuration, environment);
+builder.Services.AddWebOptimizerSimplified(builder.Environment);
+builder.Services.AddPiranhaSimplified(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
-app.UseDeveloperExceptionPageSimplified(environment);
+app.UseDeveloperExceptionPageSimplified(app.Environment);
 app.UsePiranhaSimplified();
 app.UseWebOptimizer();
 app.Run();

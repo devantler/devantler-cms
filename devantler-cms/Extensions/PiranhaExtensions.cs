@@ -7,7 +7,7 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Data.EF.SQLServer;
 using Piranha.Manager.Editor;
 
-namespace devantler_cms.Extensions;
+namespace devantler.cms.Extensions;
 public static class PiranhaExtensions
 {
     public static void AddPiranhaSimplified(this IServiceCollection services, ConfigurationManager config, IWebHostEnvironment environment)

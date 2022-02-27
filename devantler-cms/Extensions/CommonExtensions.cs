@@ -1,4 +1,4 @@
-namespace devantler_cms.Extensions;
+namespace devantler.cms.Extensions;
 
 public static class CommonExtensions
 {

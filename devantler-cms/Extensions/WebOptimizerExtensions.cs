@@ -1,4 +1,4 @@
-namespace devantler_cms.Extensions;
+namespace devantler.cms.Extensions;
 public static class WebOptimizerExtensions
 {
     public static void AddWebOptimizerSimplified(this IServiceCollection services, IWebHostEnvironment environment)
