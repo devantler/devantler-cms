@@ -40,7 +40,7 @@ public static class PiranhaExtensions
     internal static void UsePiranhaSimplified(this WebApplication app)
     {
         var serviceProvider = app.Services.CreateScope().ServiceProvider;
-        var api = app.Services.GetRequiredService<IApi>();
+        var api = serviceProvider.GetRequiredService<IApi>();
         App.Init(api);
 
         new ContentTypeBuilder(api)
