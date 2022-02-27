@@ -38,8 +38,10 @@ public static class PiranhaSetup
         });
     }
 
-    internal static void UsePiranhaSimplified(this IApplicationBuilder app)
+    internal static void UsePiranhaSimplified(this WebApplication app)
     {
+        Init(app.Services.GetRequiredService<IApi>());
+        ConfigureTinyMCE();
         app.UsePiranha(options =>
         {
             options.UseManager();
