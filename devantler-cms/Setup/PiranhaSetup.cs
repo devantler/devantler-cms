@@ -16,7 +16,6 @@ public static class PiranhaSetup
         {
             options.UseCms();
             options.UseManager();
-
             options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
             options.UseImageSharp();
             options.UseTinyMCE();
@@ -50,12 +49,12 @@ public static class PiranhaSetup
         });
     }
 
-    internal static void ConfigureTinyMCE()
+    private static void ConfigureTinyMCE()
     {
         EditorConfig.FromFile("editorconfig.json");
     }
 
-    public static void Init(IApi api)
+    private static void Init(IApi api)
     {
         App.Init(api);
 
