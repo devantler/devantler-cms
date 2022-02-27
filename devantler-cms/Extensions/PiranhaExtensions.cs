@@ -20,21 +20,34 @@ public static class PiranhaExtensions
             options.UseImageSharp();
             options.UseTinyMCE();
             options.UseMemoryCache();
-
-            var connectionString = config.GetConnectionString("Database");
-            switch (environment.EnvironmentName)
-            {
-                case "Development":
-                    options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
-                    options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
-                    break;
-                case "Staging":
-                case "Production":
-                    options.UseEF<SQLServerDb>(db => db.UseSqlServer(connectionString));
-                    options.UseIdentityWithSeed<IdentitySQLServerDb>(db => db.UseSqlServer(connectionString));
-                    break;
-            }
+            UseDb(config, environment, options);
         });
+    }
+
+    private static void UseDb(ConfigurationManager config, IWebHostEnvironment environment, PiranhaServiceBuilder options)
+    {
+        var connectionString = config.GetConnectionString("Database");
+        switch (environment.EnvironmentName)
+        {
+            case "Development":
+                UseSQLite(options, connectionString);
+                break;
+            case "Staging":
+            case "Production":
+                UseSQLServer(options, connectionString);
+                break;
+        }
+    }
+
+    private static void UseSQLite(PiranhaServiceBuilder options, string connectionString)
+    {
+        options.UseEF<SQLiteDb>(db => db.UseSqlite(connectionString));
+        options.UseIdentityWithSeed<IdentitySQLiteDb>(db => db.UseSqlite(connectionString));
+    }
+    private static void UseSQLServer(PiranhaServiceBuilder options, string connectionString)
+    {
+        options.UseEF<SQLServerDb>(db => db.UseSqlServer(connectionString));
+        options.UseIdentityWithSeed<IdentitySQLServerDb>(db => db.UseSqlServer(connectionString));
     }
 
     internal static void UsePiranhaSimplified(this WebApplication app)
