@@ -1,5 +1,5 @@
-namespace devantler_cms.Setup;
-public static class WebOptimizerSetup
+namespace devantler_cms.Extensions;
+public static class WebOptimizerExtensions
 {
     public static void AddWebOptimizerSimplified(this IServiceCollection services, IWebHostEnvironment environment)
     {

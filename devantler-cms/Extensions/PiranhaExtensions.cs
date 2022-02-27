@@ -7,10 +7,10 @@ using Piranha.Data.EF.SQLite;
 using Piranha.Data.EF.SQLServer;
 using Piranha.Manager.Editor;
 
-namespace devantler_cms.Setup;
-public static class PiranhaSetup
+namespace devantler_cms.Extensions;
+public static class PiranhaExtensions
 {
-    public static void AddPiranhaSimplified(this IServiceCollection services, IConfiguration config, IWebHostEnvironment environment)
+    public static void AddPiranhaSimplified(this IServiceCollection services, ConfigurationManager config, IWebHostEnvironment environment)
     {
         services.AddPiranha(options =>
         {
@@ -39,8 +39,17 @@ public static class PiranhaSetup
 
     internal static void UsePiranhaSimplified(this WebApplication app)
     {
-        Init(app.Services.GetRequiredService<IApi>());
+        var serviceProvider = app.Services.CreateScope().ServiceProvider;
+        var api = app.Services.GetRequiredService<IApi>();
+        App.Init(api);
+
+        new ContentTypeBuilder(api)
+            .AddAssembly(typeof(Program).Assembly)
+            .Build()
+            .DeleteOrphans();
+
         ConfigureTinyMCE();
+
         app.UsePiranha(options =>
         {
             options.UseManager();
@@ -52,15 +61,5 @@ public static class PiranhaSetup
     private static void ConfigureTinyMCE()
     {
         EditorConfig.FromFile("editorconfig.json");
-    }
-
-    private static void Init(IApi api)
-    {
-        App.Init(api);
-
-        new ContentTypeBuilder(api)
-            .AddAssembly(typeof(PiranhaSetup).Assembly)
-            .Build()
-            .DeleteOrphans();
     }
 }
