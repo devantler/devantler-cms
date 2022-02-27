@@ -42,24 +42,31 @@ public static class PiranhaExtensions
         var serviceProvider = app.Services.CreateScope().ServiceProvider;
         var api = serviceProvider.GetRequiredService<IApi>();
         App.Init(api);
-
-        new ContentTypeBuilder(api)
-            .AddAssembly(typeof(Program).Assembly)
-            .Build()
-            .DeleteOrphans();
-
+        ImportContentTypes(api);
         ConfigureTinyMCE();
+        EnableServices(app);
+    }
 
+    private static void ImportContentTypes(IApi api)
+    {
+        new ContentTypeBuilder(api)
+                    .AddAssembly(typeof(Program).Assembly)
+                    .Build()
+                    .DeleteOrphans();
+    }
+
+    private static void ConfigureTinyMCE()
+    {
+        EditorConfig.FromFile("editorconfig.json");
+    }
+
+    private static void EnableServices(WebApplication app)
+    {
         app.UsePiranha(options =>
         {
             options.UseManager();
             options.UseTinyMCE();
             options.UseIdentity();
         });
-    }
-
-    private static void ConfigureTinyMCE()
-    {
-        EditorConfig.FromFile("editorconfig.json");
     }
 }
