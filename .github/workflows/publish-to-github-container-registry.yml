@@ -28,6 +28,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v2
+        with:
+          images: ghcr.io/devantler/devantler-cms
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -36,4 +42,4 @@ jobs:
           file: devantler-cms/Dockerfile
           platforms: linux/arm64
           push: true
-          tags: devantler/devantler-cms:dev
+          tags: dev
