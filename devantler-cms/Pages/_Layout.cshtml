@@ -1,9 +1,5 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@{
-    var version = Piranha.Utils.GetAssemblyVersion(typeof(Piranha.App).Assembly);
-    version = version.Substring(0, version.LastIndexOf("."));
-}
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="~/">Piranha CMS <small>@version</small></a>
+            <a class="navbar-brand" href="~/">devantler</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
