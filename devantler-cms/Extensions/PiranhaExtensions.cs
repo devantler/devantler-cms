@@ -10,9 +10,9 @@ using Piranha.Manager.Editor;
 namespace devantler.cms.Extensions;
 public static class PiranhaExtensions
 {
-    public static void AddPiranhaSimplified(this IServiceCollection services, ConfigurationManager config, IWebHostEnvironment environment)
+    public static void AddPiranhaSimplified(this WebApplicationBuilder builder, ConfigurationManager config, IWebHostEnvironment environment)
     {
-        services.AddPiranha(options =>
+        builder.Services.AddPiranha(options =>
         {
             options.UseCms();
             options.UseManager();

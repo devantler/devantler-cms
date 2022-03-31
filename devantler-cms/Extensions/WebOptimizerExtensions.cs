@@ -1,9 +1,9 @@
 namespace devantler.cms.Extensions;
 public static class WebOptimizerExtensions
 {
-    public static void AddWebOptimizerSimplified(this IServiceCollection services, IWebHostEnvironment environment)
+    public static void AddWebOptimizerSimplified(this WebApplicationBuilder builder, IWebHostEnvironment environment)
     {
-        services.AddWebOptimizer(
+        builder.Services.AddWebOptimizer(
             environment,
             new CssBundlingSettings { Minify = environment.IsProduction() },
             new CodeBundlingSettings { Minify = environment.IsProduction() },
