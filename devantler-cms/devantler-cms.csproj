@@ -12,7 +12,7 @@
     <PackageReference Include="Piranha" Version="10.0.4" />
     <PackageReference Include="Piranha.AspNetCore" Version="10.0.4" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SQLServer" Version="10.0.4" />
-    <PackageReference Include="Piranha.Data.EF.SQLServer" Version="10.0.3" />
+    <PackageReference Include="Piranha.Data.EF.SQLServer" Version="10.0.4" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="10.0.4" />
     <PackageReference Include="Piranha.Data.EF.SQLite" Version="10.0.4" />
     <PackageReference Include="Piranha.AttributeBuilder" Version="10.0.4" />
