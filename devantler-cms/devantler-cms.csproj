@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.84" />
+    <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.89" />
     <PackageReference Include="Piranha" Version="10.1.0" />
     <PackageReference Include="Piranha.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SQLServer" Version="10.1.0" />
